@@ -9,12 +9,33 @@ import Guesses from './guesses'
 const GameContainer = props => {
 	const newGuess = (guess) => {
     	props.dispatch(actions.addGuess(guess));
+
   	};
+
+  	
+  	const getFewestGuesses = () => {
+  		if (props.feedback === "eureka!") {
+  			console.log(props.count);
+ 			props.dispatch(actions.fetchFewestGuesses(props.count));
+ 			console.log(props.fewestGuesses)
+
+ 		}
+  	}
+
+
+  	// if  (props.feedback === "eureka!") {
+  		
+  	// 		props.dispatch(actions.fewestGuesses(props.count));
+  	// 		console.log(props.fewestGuesses);
+  	// 		console.log('IT WORKS');
+  	// }
+
 	return (
 		
 		<div className="gameContainer">
 			<Feedback 
-			text={ props.feedback }
+			text={ props.feedback } 
+			onClick = {getFewestGuesses}
 			/>
 			<hr/>
 			<Form 
@@ -34,7 +55,8 @@ const GameContainer = props => {
 const mapStateToProps = (state, props) => ({
 	feedback: state.feedback ,
 	count: state.count,
-	guessedNumbers: state.guessedNumbers
+	guessedNumbers: state.guessedNumbers,
+	fewestGuesses: state.fewestGuesses
 });
 
 

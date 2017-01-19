@@ -2,8 +2,11 @@ import React from 'react'
 
 const Feedback = props => {
 
+
+
 	return (
-		<div className="feedback">
+		<div onClick={props.onClick} 
+		className="feedback">
       		{props.text}
 		</div>
 	);

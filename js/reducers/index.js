@@ -5,7 +5,8 @@ const emptyState = {
     guessedNumbers: [],
     answer: 34,
     feedback: 'make a guess',
-    count: 0
+    count: 0,
+    fewestGuesses: 0
 }
 
 export const mainReducer = (state = emptyState, action) => {
@@ -36,7 +37,8 @@ export const mainReducer = (state = emptyState, action) => {
         return { ...state,
             guessedNumbers: [...state.guessedNumbers, action.num],
             feedback: response,
-            count: count
+            count: count,
+            fewestGuesses: count
             }
     }
 
@@ -46,6 +48,16 @@ export const mainReducer = (state = emptyState, action) => {
             count: 0,
             feedback: 'welcome to guess a number',
             guessedNumbers: []
+            }
+    }
+
+    if (action.type === actions.FEWEST_GUESSES) {
+        console.log('Reducer Called');
+        return { ...state,
+            guessedNumbers: [...state.guessedNumbers],
+            feedback: state.feedback,
+            count: count,
+            fewestGuesses: count
             }
     }
 
