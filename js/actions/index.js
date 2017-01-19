@@ -1,22 +1,19 @@
 // guess number
 // submit number
 //
+export const NEW_GAME = 'NEW_GAME';
+export const newGame = () => ({
+    type: NEW_GAME,
+    magicNum: Math.floor(Math.random() * 100) + 1
+})
 
-var NEW_GAME = 'NEW_GAME';
-var newGame = function() {
-    console.log("new game");
-    return {
-        type: NEW_GAME
-    };
-};
 
-var MAKE_GUESS = 'MAKE_GUESS';
-var makeGuess = function(guess) {
-    return {
-        type: MAKE_GUESS,
-        guess: guess
-    };
-};
+export const ADD_GUESS = 'ADD_GUESS';
+export const addGuess = num => ({
+    type: ADD_GUESS,
+    num: num
+});
+
 
 var TOGGLE_INFO_MODAL = 'TOGGLE_INFO_MODAL';
 var toggleInfoModal = function() {
@@ -26,7 +23,7 @@ var toggleInfoModal = function() {
     };
 };
 
-module.exports = {NEW_GAME, newGame, MAKE_GUESS, makeGuess, TOGGLE_INFO_MODAL, toggleInfoModal};
+module.exports = {NEW_GAME, newGame, ADD_GUESS, addGuess, TOGGLE_INFO_MODAL, toggleInfoModal};
 // exports.NEW_GAME = NEW_GAME;
 // exports.newGame = newGame;
 // exports.MAKE_GUESS = MAKE_GUESS;

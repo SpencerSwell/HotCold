@@ -1,6 +1,4 @@
-var createStore = require('redux').createStore;
-var reducer = require('./reducers');
+import { createStore } from 'redux';
+import { mainReducer } from './reducers/index';
 
-var store = createStore(reducer);
-
-module.exports = store;
+export default createStore(mainReducer);
