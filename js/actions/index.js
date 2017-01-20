@@ -10,11 +10,31 @@ export const fewestGuesses = (number) => ({
 
 });
 
-export const fetchFewestGuesses = guessNumber => dispatch => {
+let buildPost =(function() {
+	const options = {
+		method: 'POST',
+	    headers: {'Content-Type': 'application/json'},
+	};
+
+	return function (body) {
+	// return {body: JSON.parse({guessCount}), ...options}
+		return Object.assign(
+			{},
+			options,
+		 	{ 
+		 		body: JSON.stringify(body)
+		 	}
+		);
+
+	}
+
+}())
+
+export const fetchFewestGuesses = guessCount => dispatch => {
 //	var myRequest = new Request('http://localhost:8081/fewest-guesses', {method: 'POST', body: {"guessCount":"\""+ guessNumber+"\""}});
 	const url = new URL ('http://localhost:8081/fewest-guesses');
 
-	return fetch(url).then(response => {
+	return fetch(url, buildPost({guessCount})).then(response => {
 
 		return response.json();
 	}).then(data => {
@@ -22,7 +42,7 @@ export const fetchFewestGuesses = guessNumber => dispatch => {
 	})
 
 }
-
+ 
 
 export const NEW_GAME = 'NEW_GAME';
 export const newGame = () => ({
